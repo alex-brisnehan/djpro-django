@@ -1,0 +1,26 @@
+{% extends "djpro/search_base.html" %}
+
+{% block body %}
+<table>
+<thead>
+  <tr>
+    <td>Album</td>
+    <td>Artist</td>
+    <td>Location</td>
+    <td>Year</td>
+    <td>Label</td>
+  </tr>
+</thead>
+<tbody>
+{% for album in album_list %}
+  <tr>
+    <td><a href="{% url 'djpro.views.album_view' album.id %}">{{album}}</a></td>
+    <td>{% if album.artist %}<a href="{% url 'djpro.views.artist_view' album.artist.id %}">{{album.artist}}</a>{% endif %}</td>
+    <td>{{album.location}}</td>
+    <td>{{album.year}}</td>
+    <td>{{album.label}}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

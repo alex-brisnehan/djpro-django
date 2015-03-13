@@ -1,0 +1,37 @@
+{% extends "on_air/helper_base.html" %}
+{% load static %}
+
+{% block headers %}{{ block.super}}
+<link href="{% get_static_prefix %}jquery.autocomplete.css" type="text/css" media="all" rel="stylesheet">
+<script type="text/javascript" src="{% get_static_prefix %}jquery.autocomplete.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}dj_pro/artist_ajax.js"></script>
+{% endblock %}
+
+{% block title %}{{album.album}}{% endblock %}
+
+{% block content %}
+<h1>{{album.album}}</h1>
+<p>{% if album.artist %}by <a href="{% url 'on_air.views.artist' id=album.artist_id %}">{{album.artist}}</a>{% else %}<i>Various Artists</i>{% endif %}</p>
+{% if album.location == "NIL" %}<p title="Not In Library" class="nil">NIL: Not In Library</p>{% else %}<p>Can be found at #{{album.location}}</p>{% endif %}
+<div class="info">{{album.review}}</div>
+<table>
+<thead>
+  <tr>
+    <td>#</td>
+    <td>Song</td>
+    {% if album.is_compilation %}<td>Artist</td>{% endif %}
+    <td>Played</td>
+  </tr>
+</thead>
+<tfoot>
+  <form action="javascript:add_new_song();" id="song_form"><tr>
+    <td></td>
+    <td>{{song_form.album}}{{song_form.song}}</td>
+    {% if album.is_compilation %}<td>{{song_form.comp_artist}}</td>{% endif %}
+    <td colspan="4"><input type="submit" value="Add new song" class="push"></td>
+  </tr></form>
+<tbody id="song_list"> 
+{% for song in songs %}<!{% cycle "even" "odd" as class %}>{% include "on_air/song.html" %}{% endfor %}
+</tbody>
+</table>
+{% endblock %}

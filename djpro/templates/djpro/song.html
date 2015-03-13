@@ -1,0 +1,12 @@
+{% load humanize %}
+<tr>
+  <td>{{song.track|default:""}}</td>
+  <td>{{song.song}}</td>
+  {% if song.album.is_compilation %}<td><a href="{{song.comp_artist.get_absolute_url}}">{{song.comp_artist|default:""}}</a></td>{% endif %}
+  <td>{{song.length|default:""}}</td>
+  <td>{{song.in|default:""}}</td>
+  <td>{{song.out|default:""}}</td>
+  <td>{{song.tempo|default:""}}</td>
+  <td>{{song.get_rating_display}}</td>
+  <td class="small">{% if song.times_played > 0 %}{{song.last_played|naturaltime}}<br/>{% endif %}{{song.times_played}} Times</td>
+</tr>

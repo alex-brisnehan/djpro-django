@@ -1,0 +1,13 @@
+{% load static %}<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %}We nned a title{% endblock %}</title>
+<script src="{% get_static_prefix %}jquery.js"></script>
+<script src="{% get_static_prefix %}on_air/helper.js"></script>
+<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}on_air/helper.css">
+{% block headers %}{% endblock %}
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>

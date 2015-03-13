@@ -1,0 +1,142 @@
+body {
+    font-size: 18px;
+    font-family: "Lucida Grande", sans-serif;
+    margin: 0;
+}
+
+h1 {
+    margin: 0.5ex 0.5em;
+    font-size: 200%;
+}
+
+.push {
+    font-family: "Century Gothic", sans-serif;
+    font-size: 18px;
+    background: white;
+    color: black;
+    border: 3px solid black;
+    border-radius: 1em;
+    padding: 0 1.5ex;
+    cursor: pointer;
+}
+
+.push:hover, .push:focus {
+    border-color: #C00;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+    border-bottom: solid black 1.5px;
+}
+
+a:hover {
+    border-color: red;
+}
+
+p, .info {
+    margin: 1ex 1em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1ex 0;
+}
+
+thead, tfoot {
+    background: #8C1B11;
+    font-family: "Century Gothic", sans-serif;
+    color: white;
+}
+
+thead td:first-child {
+    border-top-left-radius: 2ex;
+}
+
+thead td:last-child {
+    border-top-right-radius: 2ex;
+}
+
+tfoot td:first-child {
+    border-bottom-left-radius: 2ex;
+}
+
+tfoot td:last-child {
+    border-bottom-right-radius: 2ex;
+}
+
+td {
+    padding: 1ex 0.5ex;
+}
+
+td:first-child {
+    padding-left: 2ex;
+}
+
+thead td, tfoot td {
+    padding-left: 1.5ex;
+}
+
+thead td:first-child, tfoot td:first-child {
+    padding-left: 2.5ex;
+}
+
+.odd {
+    background-color: #FDEFBE;
+}
+
+select, input[type=text] {
+    border: 1px solid black;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 18px;
+}
+
+input[type=text] {
+    width: 28ex;
+}
+
+input[maxlength="5"] {
+    width: 6ex;
+}
+
+input[maxlength="6"] {
+    width: 7ex;
+}
+
+input:focus, select:focus {
+    outline: #c00 3px solid;
+}
+
+.errorlist {
+    margin: 0 0 1ex 1em;
+    padding: 0;
+    list-style: none;
+    display: block;
+}
+
+.errorlist:before {
+    content: "\269B \0020";
+    color: red;
+    display: run-in;
+}
+
+td ul.errorlist {
+    margin: 0;
+}
+
+.nil {
+    font-family: "Lucida Console", monospace;
+}
+
+.small {
+    font-size: 70%;
+    padding: 0.5ex;
+    padding-left: 1.5ex;
+}
+
+.atom {
+    height: 1em; 
+    width: 1em; 
+    vertical-align: bottom;
+}

@@ -1,0 +1,1 @@
+{ {% for line in list %}"{{line.id}}":"{{line.played_at|time:"g:i"}}"{% if not forloop.last %}, {% endif %}{% endfor %} }

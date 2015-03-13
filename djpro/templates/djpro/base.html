@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %}{% endblock %} &#8212; DJ pro</title>
+<link rel="stylesheet" type="text/css" href="{% static 'djpro/main.css' %}">
+{% block media %}{% endblock %}
+</head>
+<body>
+  <header>
+<div>
+  <div class="user">Hello, {{user.get_profile.alias|default:user}} 
+    — <a href="{% url 'djpro.views.front' %}logout/">Logout</a><br>
+    <a href="{% url 'djpro.views.edit_profile' %}">Edit your profile</a>
+  </div>
+  <div class="logo">Radio 1190<br>
+  DJ Pro
+  </div>
+  <form action="{% url 'djpro.views.search' %}" method="GET" class="search">
+    {% block search %}
+    Search for <select name="for">
+      <option>Artist</option>
+      <option>Album</option>
+      <option>Location</option>
+      <option>Song</option>
+      <option>Label</option>
+    </select>
+    <input type="text" name="value">
+    {% endblock %}
+  </form>
+  <a href="{% url 'djpro.views.artist_new' %}">New Artist</a> —
+  <a href="{% url 'djpro.views.album_new' %}">New Album</a> —
+  <a href="{% url 'djpro.views.concert_list' %}">Concert Listing</a>
+</div>
+  <hr>
+</header>
+{% if messages %}
+<ul class="messages">{% for mess in messages %}
+  <li>{{mess}}</li>
+{% endfor %}</ul>
+{% endif %}
+{% block body %} {% endblock %}
+</body>
+</html>

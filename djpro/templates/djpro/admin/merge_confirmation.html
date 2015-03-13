@@ -1,0 +1,30 @@
+{% extends "admin/delete_confirmation.html" %}
+{% load i18n %}
+
+{% block extrastyle %}
+{{ media }}
+{% endblock %}
+
+{% block content %}
+{% if lacking_perms %}
+    <p>You can't merge {{ object_name }} "{{ object }}" because it requires changing attached records. You can try merging the other {{ object_name }} to this one. Here are the things you need to change, but can't.</p>
+    <ul>
+    {% for obj in lacking_perms %}
+        <li>{{ obj }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>What do you want to merge with {{ object_name }} "{{ object }}"? It cannot be undone. All of the following related items will be changed to use the other {{ object_name }}:</p>
+    <ul>{% for r in affected %}
+      <li>{{ r }}</li>
+    {% endfor %}</ul>
+    {% if errors %}<ul class="errorlist">{% for e in errors %}<li>{{e}}</li>{% endfor %}</ul>{% endif %}
+    <form action="" method="post">{% csrf_token %}
+    <div>
+      {{ form.entry }}
+    <input type="hidden" name="post" value="yes" />
+    <input type="submit" value="Merge them" />
+    </div>
+    </form>
+{% endif %}
+{% endblock %}

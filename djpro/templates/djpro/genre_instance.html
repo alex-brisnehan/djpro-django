@@ -1,0 +1,38 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}Artists and albums in “{{genre.name}}”{% endblock %}
+
+{% block body %}
+{% if artists %}
+<table>
+  <thead>
+    <tr><td>Artist</td></tr>
+  </thead>
+  <tbody>
+    {% for a in artists %}
+    <tr>
+      <td><a href="{% url 'djpro.views.artist_view' a.id %}">{{a.artist}}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if albums %}
+<table>
+  <thead>
+    <tr>
+      <td>Album</td>
+      <td>Artist</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in albums %}
+    <tr>
+      <td><a href="{% url 'djpro.views.album_view' a.id %}">{{a.album}}</a></td>
+      <td>{{a.artist|default:"<i>Compliation</i>"}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

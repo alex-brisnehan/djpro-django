@@ -1,0 +1,24 @@
+{% extends "djpro/artist.html" %}
+
+{% block "change_view" %}<a class="button" href=".?show=albums">Show Albums</a>{% endblock %}
+
+{% block "artist_view" %}
+<table>
+<thead>
+  <tr>
+    <td>Song</td>
+    <td>Album</td>
+    <td>Location</td>
+    <td>Year</td>
+  </tr>
+</thead>
+<tbody>{% for song in songs %}
+  <tr>
+    <td>{{song.song}}</td>
+    <td><a href="{{song.album.get_absolute_url}}">{{song.album}}</a></td>
+    <td>{{song.album.location}}</td>
+    <td>{{song.album.year}}</td>
+  </tr>{% endfor %}
+</tbody>
+</table>
+{% endblock %}

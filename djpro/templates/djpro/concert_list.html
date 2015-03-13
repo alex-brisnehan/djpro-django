@@ -1,0 +1,35 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}Concert Listing{% endblock %}
+
+{% block body %}
+<table>
+	<thead><tr>
+		<td style="width: 7.3em;">Date</td>
+		<td>Bands</td>
+		<td>Venue</td>
+		<td>Extra</td>
+		<td></td>
+	</tr></thead>
+	<tfoot><tr>
+		<td></td>
+		<td colspan="4"><button onclick="location.pathname='{% url 'djpro.views.concert_new' %}'">New Concert</button></td>
+	</tr></tfoot>
+	<tbody>
+	{% for c in concerts %}
+	<tr>
+		<td>{{c.date|date:"D n/j/y"}}<br>{{c.time|time:"g:i a"}}</td>
+		<td>{% for perform in c.performer_set.all %}{% if perform.get_absolute_url %}<a href="{{perform.get_absolute_url}}">{{perform}}</a>{% else %}{{perform}}{% endif %}
+		  {% if forloop.last %}{% else %} — {% endif %}{% endfor %}</td>
+		<td>{{c.venue}}</td>
+		<td>{{c.minimum_age}} {{c.info}}</td>
+		<td>
+		<button onclick="location.pathname='{% 'url djpro.views.concert_edit' c.id %}'">Edit</button> 
+		<form method="POST" action="{% url 'djpro.views.concert_delete' %}">{% csrf_token %}
+			<input type="hidden" name="id" value="{{c.id}}"><input type="submit" value="Delete">
+		</form></td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "djpro/base.html" %}
+
+{% block media %}
+{{media}}
+<style type="text/css">
+input.opt_artist{
+    width: 30em;
+}
+#id_site{
+    width: 26em;
+}
+#id_info{
+    width: 30em;
+    height: 4em;
+}
+</style>
+{% endblock %}
+
+{% block title %}Editing concert{% endblock %}
+
+{% block body %}
+<form method="POST">{% csrf_token %}
+{{concert.date.errors}}<p>Date: {{concert.date}}</p>
+{{concert.time.errors}}<p>Time: {{concert.time}}</p>
+{{concert.venue.errors}}<p>Venue: {{concert.venue}}</p>
+<div>
+<p>Artists: </p>
+{{performers.management_form}}
+{% for p in performers.forms %}
+{{p.performer.errors}}<p>{{p.performer}}{{p.id}}</p>
+{% endfor %}
+</div>
+<p>Ages: {{concert.minimum_age}}</p>
+<p>URL: {{concert.site}}</p>
+<p><label for="{{concert.we_present.auto_id}}">Radio 1190 presents: </label>{{concert.we_present}}</p>
+<p>More info:<br>{{concert.info}}</p>
+<p><input type="submit" value="Save concert"></p>
+</form>
+{% endblock %}

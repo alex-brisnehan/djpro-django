@@ -1,0 +1,25 @@
+{% extends "on_air/artist.html" %}
+
+{% block list %}
+<p><a href="?show=albums" class="push">Show albums</a></p>
+
+<table>
+  <thead><tr>
+    <td>Song</td>
+    <td>Album</td>
+    <td>Played</td>
+  </tr></thead>
+  <tfoot><tr>
+    <td colspan="3"></td>
+  </tr></tfoot>
+  <tbody>
+{% for song in songs %}
+  <tr class="{% cycle "even" "odd" %}">
+    <td><a href="javascript:add_to_playlist({{song.id}}{% if song.played_recently %}, true{% endif %})" class="push">Play</a> {{song.song}}</td>
+    <td><a href="{% url 'on_air.views.album' id=song.album.id %}">{{song.album}}</a> {% if song.album.location == "NIL" %}<span title="Not In Library" class="nil">NIL</span>{% else %}#{{song.album.location}}{% endif %}</td>
+    {% if song.last_played %}{% if song.played_recently %}<td>{{song.last_played|timesince}}<br>{{song.times_played}} times {{song.played_at}}</td>{% else %}<td class="small">{{song.last_played|date:"n/j/Y"}}<br>{{song.times_played}} times</td>{% endif %}{% else %}<td class="small">Not played yet</td>{% endif %}
+  </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

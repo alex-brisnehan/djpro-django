@@ -1,0 +1,50 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_modify admin_static %}
+
+{% block content %}<div id="content-main">
+
+<form action="" method="post" id="rotation_form">
+  {% csrf_token %}
+  {{ formset.management_form}}
+{% if form.non_field_errors %}
+    <p class="errornote">
+    {% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+    </p>
+    {{ formset.non_field_errors }}
+{% endif %}
+<div class="module">
+
+<table cellspacing="0" id="result_list" style="width: 100%">
+<thead>
+  <tr>
+    <th>Song</th>
+    <th>Artist</th>
+    <th>Album</th>
+    <th>Date added</th>
+    <th>Rotation</th>
+    <th>Delete?</th>
+  </tr>
+</thead>
+<tbody>
+  {% for f in formset.forms %}
+  <tr class="{% cycle 'row1' 'row2' %}">
+    <td>{{f.instance.song}}</td>
+    <td>{{f.instance.artist|default:""}}</td>
+    <td>{{f.instance.album}} #{{f.instance.album.location}}</td>
+    <td>{{f.instance.added_on|date:"SHORT_DATE_FORMAT"}}
+    <td>{{f.id}}{{f.rotation}}
+      {% if f.rotation.errors %}{{f.rotation.errors}}{% endif %}
+    </td>
+    <td>{{f.DELETE}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+</div>
+
+<div class="submit-row">
+<input type="submit" value="Save" class="default" name="_save"/>
+</div>
+</form></div>
+{% endblock %}

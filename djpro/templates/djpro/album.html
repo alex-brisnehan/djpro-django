@@ -1,0 +1,45 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}{{album.album}}{% endblock %}
+
+{% block media %}{{song_form.media}}{% endblock %}
+
+{% block body %}
+<h1>{{album.album}}</h1>
+<p>{% if album.artist %}By
+<a href="{% url 'djpro.views.artist_view album.artist.id' %}">{{album.artist}}</a>
+{% else %}<i>Compilation</i>{% endif %}</p>
+<p>{% if album.location == 'NIL' %}<i>Not In Library</i>{% else %}Found at {{album.location}}{% endif %}</p>
+<p>{{album.year}} {{album.label}}</p>
+<p>{% for g in album.genres.all %}<a href="{% url 'djpro.views.genre' g.slug %}">{{g.name}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+<p>{{album.review}}</p>
+<p>
+<a href="edit/" class="button">Edit Me</a> <a class="button" href="print/">Print Insert</a>
+</p>
+<table>
+<thead>
+  <tr>
+    <td>Track</td>
+    <td>Song</td>
+    {% if album.is_compilation %}<td>Artist</td>{% endif %}
+    <td>Length</td>
+    <td>In</td>
+    <td>Out</td>
+    <td>Tempo</td>
+    <td>Rating</td>
+    <td>Last Played</td>
+  </tr>
+</thead>
+<tfoot>
+  <tr><form action="javascript:add_new_song();" id="song_form">{% csrf_token %}
+    <td>{{song_form.album}}</td>
+    <td>{{song_form.song}}</td>
+    {% if album.is_compilation %}<td>{{song_form.comp_artist}}</td>{% endif %}
+    <td colspan="5"><input type="submit" value="Add New Song"></td>
+    <td></td>
+  </form></tr>
+<tbody id="song_list"> 
+{% for song in songs %}{% include "djpro/song.html" %}{% endfor %}
+</tbody>
+</table>
+{% endblock %}

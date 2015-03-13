@@ -1,0 +1,47 @@
+{% extends "on_air/helper_base.html" %}
+
+{% block title %}Making a new album{% endblock %}
+
+{% block headers %}{{album.media}}{% endblock %}
+
+{% block content %}
+<form action="." method="POST">{% csrf_token %}
+<p>{{album.album.label_tag}}: {{album.album}}</p>{{album.album.errors}}
+<p>{{album.artist.label_tag}}: {{album.artist}}</p>{{album.artist.errors}}
+<p>{{album.label.label_tag}}: {{album.label}}</p>{{album.label.errors}}
+<p>{{album.year.label_tag}}: {{album.year}}</p>{{album.year.errors}}
+<p>{{album.location.label_tag}}: {{album.location}}</p>{{album.location.errors}}
+{{song_set.management_form}}
+<table>
+<thead>
+  <tr>
+    <td>Track</td>
+    <td>Song</td>
+    <td>Artist</td>
+    <td>Length</td>
+    <td>In</td>
+    <td>Out</td>
+    <td>Tempo</td>
+  </tr>
+</thead>
+<tfoot>
+  <tr>
+    <td colspan="7"><input type="submit" value="Save new album" class="push"></td>
+  </tr>
+</tfoot>
+<tbody>
+{% for song in song_set.forms %}
+  <tr class="{% cycle "even" "odd" %}">
+    <td>{{song.track}}</td>
+    <td>{{song.id}}{{song.song.errors}}{{song.song}}</td>
+    <td>{{song.comp_artist}}{{song.errors.comp_artist}}</td>
+    <td>{{song.length}}</td>
+    <td>{{song.ramp}}</td>
+    <td>{{song.post}}</td>
+    <td>{{song.tempo}}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}Editing {{artist.artist|escape}}{% endblock %}
+
+{% block media %}
+{{form.media}}
+<style type="text/css">
+#id_artist {
+  width: 30em;
+}
+#id_genres {
+  width: 24.1em;
+}
+#id_info {
+  width :30em;
+  height: 4em;
+}
+#id_url {
+  width: 21.5em;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<form action="." method="POST">{% csrf_token %}
+{{form.artist.errors}}<p>Name:<br>{{form.artist}}</p>
+{{form.genres.errors}}<div><p>Genres: {{form.genres}}</p>
+<div class="hint">Comma separated list of genre names</div></div>
+<p>Info:<br>{{form.info}}</p>
+{{form.url.errors}}<p>Homepage: {{form.url}}</p>
+<p><input type="submit" value="Save"></p>
+</form>
+{% endblock %}

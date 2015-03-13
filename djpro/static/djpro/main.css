@@ -1,0 +1,261 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14pt;
+    line-height: 1.6em;
+}
+
+p {
+    padding-right: 1em;
+    padding-left: 1em;
+    margin: 0;
+    margin-top: 0.3em;
+}
+
+h1 {
+    font-size: 1.6em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+a {
+    text-decoration: inherit;
+    border-bottom: 2px solid black;
+    color: inherit;
+}
+
+a:focus, a:active, input[type=submit]:active, input[type=submit]:focus, button:active, button:focus {
+    outline: none;
+    border-color: #C00;
+}
+
+button, input[type=submit], .button {
+    border: 3px solid black;
+    font-size: 12pt;
+    height: 30px;
+    padding-right: 1.1em;
+    padding-left: 1.1em;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: black;
+    background: white;
+    font-family: "Century Gothic", sans-serif;
+    text-decoration: none;
+    border-radius: 2em;
+    cursor: pointer;
+}
+
+.button {
+    display: inline-block;
+    line-height: 25px;    
+    height: 24px;
+}
+
+table {
+    border-collapse: collapse; 
+    border-top: 1em solid #8c1b11;
+    border-bottom: 1em solid #8c1b11;
+    border-right: 0.5em solid #8c1b11;
+    border-left: 0.5em solid #8c1b11;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+thead, tfoot {
+    background: #8c1b11;
+    font-size: 18px;
+    color: white;
+    font-family: "Century Gothic", sans-serif;
+}
+
+tbody tr:nth-child(odd) {
+    background: #FDEFBE;
+}
+
+td {
+    padding: 0.5em;
+    max-width: 40%;
+}
+
+thead td {
+    padding-bottom: 0.2em;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+tfoot td {
+    padding-bottom: 0;
+    padding-top: 0.5em;
+    margin-bottom: 0;
+}
+
+td>input {
+    width: 100%;
+}
+
+td>input[type=submit] {
+    width: auto;
+}
+
+.center {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    text-align: center;
+}
+
+.error {
+    border-top: 3px solid #C00;
+    border-bottom: 3px solid #C00;
+    font-family: Helvetica, sans-serif;
+    color: #8C1B11;
+    background: white;
+    width: 100%;
+}
+
+.errorlist {
+    border-top: 3px solid #C00;
+    border-top-left-radius: 14pt;
+    border-top-right-radius: 14pt;
+    font-size: 80%;
+    margin: 0;
+    padding-left: 2em;
+    list-style-type: none;
+    color: #8C1B11;
+    background: white;
+}
+
+.errorlist+*{
+    border-bottom: 3px solid #C00;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+td *.errorlist {
+    border: none;
+    padding: 0;
+    line-height: 1.2em;
+    background: none;
+}
+
+.three-columns {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+}
+
+.three-columns>* {
+    break-inside: avoid;
+}
+
+.short {
+    width: 4em;
+}
+
+.long {
+    width: 25em;
+}
+
+.hint {
+    font-size: 50%;
+    line-height: 1em;
+    margin-left: 4em;
+}
+
+header {
+    display: block;
+    position: relative;
+    background: #8C1B11;
+    color: white;
+    height: 3em;
+}
+
+header>div {
+    position: absolute;
+    top: 0.3em;
+    background: #8C1B11;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    width: 100%;
+    height: 1.2em;
+    padding-bottom: 0.5em;
+    overflow: hidden;
+    z-index: 100;
+}
+
+header>div:hover {
+    height: auto;
+}
+
+header a {
+    border-color: white;
+}
+
+header a:active, header a:hover {
+    border-color: black;
+}
+
+header .user {
+    float: right;
+    text-align: right;
+    padding-left: 0.5em;
+    padding-right: 1em;
+}
+
+header .logo {
+    float: left;
+    text-align: center;
+    padding-left: 1em;
+    margin-right: 1em;
+    font-family: "Century Gothic", sans-serif;
+}
+
+header .search {
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+header input, header select {
+    border: none;
+    background: white;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 14px;
+}
+
+header hr {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1em;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    border: none;
+    margin: 0;
+    background: white;
+}
+
+.messages {
+    overflow: hidden;
+    border-radius: 1em;
+    background: #FDEFBE;
+    border: 3px solid #C00;
+    margin: 1em;
+    margin-top: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.messages li {
+    border-top: 3px solid #C00;
+    padding: 0.5em 2em;
+    margin: 0;
+}
+
+.messages li:first-child {
+    border: none;
+}
+
+td.small {
+    font-size: 60%;
+    line-height: 1em;
+}

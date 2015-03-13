@@ -1,0 +1,22 @@
+{% extends "admin/change_list.html" %}
+{% block object-tools %}
+<table>
+  <thead><tr>
+    <td>Rotation</td>
+    <td>Suggested</td>
+    <td>Songs</td>
+    <td>Scheduled</td>
+  </tr></thead>
+  <tbody>
+    {% for rot in rotation %}
+    <tr>
+      <td>{{rot.rotation}}</td>
+      <td>{{rot.max}}</td>
+      <td>{{rot.song_set.all.count}}</td>
+      <td>{{rot.rotationschedule_set.all.count}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{ block.super}}
+{% endblock %}

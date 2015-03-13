@@ -1,0 +1,262 @@
+body {
+    font-size: 18px;
+    font-family: "Lucida Grande", sans-serif;
+    margin: 0 0 2em 0;
+}
+
+a {
+    border-radius: 3em;
+    border: 3px solid transparent;
+    padding-right: 1ex;
+    padding-left: 1ex;
+}
+
+a:focus, a:hover {
+    outline: none;
+    border-color: #C00;
+}
+
+.ui-autocomplete a{
+    border-radius: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+
+    background: #8c1b11;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom-left-radius: 2.8em 2.5em;
+    border-bottom-right-radius: 2.8em 2.5em;
+    
+    color: white;
+    font-family: "Century Gothic", sans-serif;
+}
+
+header * {
+    color: white;
+}
+
+header input, header select {
+    border: 1px solid white;
+    background: #8c1b11;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 18px;
+    margin-right: 1ex;
+    margin-left: 1ex;
+}
+
+header input:selection {
+    background: #FDEFBE;
+    color: black;
+}
+
+input:focus, select:focus {
+    outline: #c00 3px solid;
+}
+
+input {
+    z-index: 50;
+}
+
+#edit_form {
+    position: absolute;
+    left: 0;
+    padding-right: 9em;
+    padding-left: 6em;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#edit_form input{
+    font-size: 80%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input[name=artist] {
+    width: 40%;
+    margin: 0;
+}
+
+input[name=song] {
+    width: 60%;
+    margin: 0;
+} 
+
+#old {
+    padding-top: 3em;
+}
+
+#old div {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    margin-bottom: -3px;
+    padding: 1ex;
+    min-height: 1.2em;
+    background: #DDD;
+}
+
+.old_time {
+    float: left;
+    width: 6ex;
+    margin-right: 1em;
+    text-align: right;
+}
+
+
+.even, .odd, .played {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    margin-bottom: -3px;
+    position: relative;
+    padding-top: 1ex;
+    padding-bottom: 1ex;
+    padding-right: 9em;
+    padding-left: 6em;
+    min-height: 2.9em;
+}
+
+.played {
+    background: #DDD;
+}
+
+.odd {
+    background: #FDEFBE;
+}
+
+.even {
+    background: #FFF;
+}
+
+.time {
+    position: absolute;
+    width: 3em;
+    left: 0.5em;
+    text-align: right;
+}
+
+.concert {
+    text-align: right;
+    margin-left: 40%;
+    margin-top: 1ex;
+    width: 60%;
+    padding-left: 2em;
+    min-height: 1.2em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.info {
+}
+
+.song, .artist {
+    vertical-align: top;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.artist {
+    padding-right: 1ex;
+    width: 40%;
+    text-align: right;
+}
+
+.artist:before {
+    float: right;
+    content: "—";
+    margin-right: -1.9ex;
+    margin-left: 0.5ex;
+}
+
+.song {
+    padding-left: 1ex;
+    width: 60%;
+}
+
+.song:before {
+    content: "—";
+    float: left;
+    margin-left: -1.9ex;
+    margin-right: 0.5ex;
+    color: transparent;
+}
+
+.edit, .play {
+    display: block;
+    border: 3px solid black;
+    height: 19px;
+    
+    position: absolute;
+    
+    text-align: center;
+    color: black;
+    background: white;
+    font-family: "Century Gothic", sans-serif;
+    text-decoration: none;
+    line-height: 17px;
+}
+
+.play {
+    width: 3.5em;
+    left: 0.5em;
+    top: 2.25em;
+}
+
+.edit {
+    width: 3em;
+    right: 60%;
+    bottom: 0.5em;
+}
+
+.insert, .delete {
+    display: block;
+    width: 6.5em;
+    height: 18px;
+
+    position: absolute;
+    z-index: 50;
+    right: 1ex;
+
+    text-align: center;
+    color: black;
+    background: inherit;
+    font-family: "Century Gothic", sans-serif;
+    text-decoration: none;
+    line-height: 16px;
+}
+
+.delete {
+    bottom: 1ex;
+    border: 3px solid transparent;
+}
+
+.insert {
+    border-bottom-right-radius: 8em;
+    border-bottom-left-radius: 8em;
+    border-top-right-radius: 0em;
+    border-top-left-radius: 0em;
+    border: 3px solid black;
+    border-top: none;
+    bottom: -21px;
+}
+
+.pick {
+    display: inline;
+}
+
+.pick select {
+    font-size: 18px;
+}

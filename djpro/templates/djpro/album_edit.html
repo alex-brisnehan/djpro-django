@@ -1,0 +1,74 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}Editing “{{form.instance.album}}”{% endblock %}
+
+{% block media %}
+{{form.media}}
+<style type="text/css">
+#id_album {
+  width: 30em;
+}
+#id_artist {
+  width: 30em;
+}
+#id_label {
+  width: 25.1em;
+}
+#id_year {
+  width: 4em;
+}
+#id_location {
+  width: 21.5em;
+}
+#id_genres {
+  width: 24em;
+}
+#id_review {
+  width :30em;
+  height: 4em;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<form action="." method="POST">{% csrf_token %}
+{{form.album.errors}}<p>Album Name:<br>{{form.album}}</p>
+{{form.artist.errors}}<p>Artist Name:<br>{{form.artist}}</p>
+{{form.label.errors}}<p>Label: {{form.label}}</p>
+{{form.year.errors}}<p>Year first released: {{form.year}}</p>
+{{form.location.errors}}<p>Location: {{form.location}}</p>
+{{form.genres.errors}}<div><p>Genres: {{form.genres}}
+<div class="hint">Comma separated list of genre names</div></div>
+{{form.review.errors}}<p>Review:<br>{{form.review}}</p>
+{{song_forms.management_form}}
+<table>
+<thead>
+  <tr>
+    <td class="short">Track</td>
+    <td class="long">Song</td>
+    <td class="long">Artist</td>
+    <td class="short">Length</td>
+    <td class="short">In</td>
+    <td class="short">Out</td>
+    <td class="short">Tempo</td>
+    <td class="short">Rating</td>
+  </tr>
+</thead>
+<tbody>
+{% for song in song_forms.forms %}
+  <tr>
+    <td>{{song.track}}</td>
+    <td>{{song.id}}{{song.song.errors}}{{song.song}}</td>
+    <td>{{song.comp_artist}}{{song.errors.comp_artist}}</td>
+    <td>{{song.length}}</td>
+    <td>{{song.ramp}}</td>
+    <td>{{song.post}}</td>
+    <td>{{song.tempo}}</td>
+    <td>{{song.rating}}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+<p> <input type="submit" value="Save Album"></p>
+</form>
+{% endblock %}

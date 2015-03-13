@@ -1,0 +1,18 @@
+{% extends "djpro/search_base.html" %}
+
+{% block body %}
+<table>
+<thead>
+  <tr>
+    <td>Artist</td>
+  </tr>
+</thead>
+<tbody>
+{% for artist in artist_list %}
+  <tr>
+    <td><a href="{{ artist.get_absolute_url }}">{{artist}}</a></td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

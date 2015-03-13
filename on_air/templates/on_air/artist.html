@@ -1,0 +1,20 @@
+{% extends "on_air/helper_base.html" %}
+
+{% block title %}{{artist.artist}}{% endblock %}
+
+{% block content %}
+<h1>{{artist.artist}}</h1>
+{% if artist.info %}<div class="info">{{artist.info|safe}}</div>{% endif %}
+{% with artist.next_concert as concert %}{% if concert %}
+<p>Playing {{concert.date|date:"D n/j/y"}} at {{concert.venue}}</p>
+{% endif %}{% endwith %}
+{% if artist.played_recently %}
+<p>Last Played: {{artist.last_played|timesince}} ago</p>
+<p>Played {{artist.times_played}} Times</p>
+{% elif artist.last_played %}
+<p>Last Played: {{artist.last_played|date:"n/j/Y"}} {{artist.times_played}} Times</p>
+{% else %}
+<p>Never been played</p>
+{% endif %}
+{% block list %}{% endblock %}
+{% endblock %}

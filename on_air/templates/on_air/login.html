@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>On air login</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'on_air/main.css' %}">
+  <style>
+    label {
+      display: inline-block;
+      width: 6em;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <form method="POST" class="center" style="background: #FDEFBE; border-radius: 1.6em; padding-bottom: 0.6em; padding-top: 1px; width: 15em; margin-top: 10em;">{% csrf_token %}
+    {% if form.errors %}
+    <h2 class="center error">No love on the login. Give it another go.</h2>
+    {% endif %}
+    <p>
+      {{ form.username.label_tag }}
+      {{ form.username }}
+    </p>
+    <p>
+      {{ form.password.label_tag }}
+      {{ form.password }}
+    </p>
+    <input type="submit" value="Login" class="center" style="width: 6em;">
+    <input type="hidden" name="next" value="{% url 'on_air.views.onair' %}">
+  </form>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}Editing your profile{% endblock %}
+
+{% block media %}
+<style type='text/css'>
+#id_first_name {
+  width: 17.8em;
+}
+#id_last_name {
+  width: 18em;
+}
+#id_alias {
+  width: 21.9em;
+}
+#id_email {
+  width: 18.45em;
+}
+#id_phone {
+  width: 18.9em;
+}
+#id_old_password {
+  width: 19.1em;
+}
+#id_new_password1 {
+  width: 18.45em;
+}
+#id_new_password2 {
+  width: 13.6em;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<form action="." method="POST">{% csrf_token %}
+{{user_form.user}}
+{{user_form.first_name.errors}}
+<p>First legal name: {{user_form.first_name}}</p>
+{{user_form.last_name.errors}}
+<div><p>Last legal name: {{user_form.last_name}}</p>
+<div class="hint">Only the FCC will see your legal name</div></div>
+{{profile.alias.errors}}
+<div><p>Nickname: {{profile.alias}}</p>
+<div class="hint">Everyone else will see your nickname</div></div>
+{{user_form.email.errors}}
+<p>E-mail address: {{user_form.email}}</p>
+{{profile.phone.errors}}
+<p>Phone number: {{profile.phone}}</p>
+<p><input type="submit" value="Save Changes"></p>
+</form>
+<form action="." method="POST">{% csrf_token %}
+{{password.old_password.errors}}
+<p>Old password: {{password.old_password}}</p>
+{{password.new_password1.errors}}
+<p>New password: {{password.new_password1}}</p>
+{{password.new_password2.errors}}
+<p>Repeat new password: {{password.new_password2}}</p>
+<p><input type="submit" value="Change Password"></p>
+</form>
+{% endblock %}

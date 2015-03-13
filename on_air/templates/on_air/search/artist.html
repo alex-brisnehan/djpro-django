@@ -1,0 +1,29 @@
+{% extends "on_air/search/base.html" %}
+
+{% block title %}Artists named “{{value}}”{% endblock %}
+
+{% block content %}
+{{ block.super }}
+<table>
+<thead>
+  <tr>
+    <td>Artist</td>
+    <td>Played</td>
+  </tr>
+</thead>
+<tfoot>
+  <tr>
+    <td colspan="2"></td>
+  </tr>
+</tfoot>
+<tbody>
+{% for artist in artist_list %}
+  <tr class="{% cycle "even" "odd" %}">
+    <td><a href="{% url 'on_air.views.artist' artist.id %}">{{artist}}</a></td>
+    {% if artist.last_played %}{% if artist.played_recently %}<td>{{artist.last_played|timesince}}<br>{{artist.times_played}} times {{artist.played_at}}</td>{% else %}<td class="small">{{artist.last_played|date:"n/j/Y"}}<br>{{artist.times_played}} times</td>{% endif %}{% else %}<td class="small">Not played yet</td>{% endif %}
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{{ block.super }}
+{% endblock %}

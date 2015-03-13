@@ -1,0 +1,9 @@
+{% extends "djpro/base.html" %}
+
+{% block body %}
+<p>
+<a href="{% url 'djpro.views.artist_new' %}">New Artist</a><br>
+<a href="{% url 'djpro.views.album_new' %}">New Album</a><br>
+<a href="{% url 'djpro.views.concert_list' %}">Concert Listing</a>
+</p>
+{% endblock %}

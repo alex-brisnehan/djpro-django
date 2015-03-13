@@ -1,0 +1,27 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}{{artist}}{% endblock %}
+
+{% block body %}
+<h1>{{artist.artist}}</h1>
+{% if concerts %}
+<p><a href="{% url 'djpro.views.concert_list' %}">Upcoming concerts:</a><br>
+	{% for concert in concerts %}
+	{{concert.date|date:"D n/j/y"}} at {{concert.venue}}<br>
+	{% endfor %}
+</p>
+{% endif %}
+<p>{% for g in artist.genres.all %}<a href="{% url 'djpro.views.genre' g.slug %}">{{g.name}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+<p>{{artist.info}}</p>
+<p> {% if artist.url %}
+<a href="{{artist.url}}">Homepage</a>
+{% endif %}
+{% if artist.last_played %}Last played on {{artist.last_played}} {{artist.timesplayed}} times
+{% else %}Never been played{% endif %}
+</p>
+<p>
+<a class="button" href="edit/">Edit Me</a>
+{% block "change_view" %}{% endblock %}
+</p>
+{% block "artist_view" %}{% endblock %}
+{% endblock %}

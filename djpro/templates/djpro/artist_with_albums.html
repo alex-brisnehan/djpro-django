@@ -1,0 +1,51 @@
+{% extends "djpro/artist.html" %}
+
+{% block "change_view" %}<a class="button" href=".?show=songs">Show All Songs</a>{% endblock %}
+
+{% block "artist_view" %}
+<table>
+<thead>
+  <tr>
+    <td>Album</td>
+    <td>Location</td>
+    <td>Year</td>
+  </tr>
+</thead>
+<tfoot>
+  <tr>
+    <td colspan="3"><form method="get" action="{% url 'djpro.views.album_new' %}"><input type="hidden" name="artist" value="{{artist.artist}}"><input type="submit" value="Add New Album"></form></td>
+  </tr>
+</tfoot>
+<tbody> {% for album in albums %}
+  <tr>
+    <td><a href="{{ album.get_absolute_url }}">{{album.album}}</a></td>
+    <td>{{album.location}}</td>
+    <td>{{album.year}}</td>
+  </tr> {% endfor %}
+</tbody>
+</table>
+{% if artist.comp_songs.count %}
+<table>
+<thead>
+  <tr>
+    <td>Songs on compilations</td>
+    <td colspan="3"></td>
+  </tr>
+  <tr>
+    <td>Song</td>
+    <td>Album</td>
+    <td>Location</td>
+    <td>Year</td>
+  </tr>
+</thead>
+<tbody>{% for song in songs %}
+  <tr>
+    <td>{{song.song}}</td>
+    <td><a href="{{song.album.get_absolute_url}}">{{song.album}}</a></td>
+    <td>{{song.album.location}}</td>
+    <td>{{song.album.year}}</td>
+  </tr>{% endfor %}
+</tbody>
+</table>
+{% endif %}
+{% endblock %}

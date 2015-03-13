@@ -1,0 +1,10 @@
+<div id="line_{{line.id}}" class="{% if line.played_at %}played{% else %}{{ line_color|default:"even" }}{% endif %}">
+<div class="time">{{line.played_at|time:"g:i"}}</div>
+<div class="info">{% if line.song %}<span class="artist">{{line.song.artist.artist}}</span><span class="song">{{line.menu|default:line.song.song}} #{{line.song.album.location}}</span>{% endif %}</div> 
+<div class="concert">{% if line.song.artist.next_concert %}{{line.song.artist.next_concert.date|date:"D M j"}} @ {{line.song.artist.next_concert.venue}}{% endif %}</div>
+
+<a href="javascript:play('{{line.id}}')" class="play">{% if line.played_at %}Played{% else %}Play{% endif %}</a>
+<a href="javascript:edit('{{line.id}}')" class="edit">Edit</a>
+<a href="javascript:del('{{line.id}}')" class="delete">Delete this</a>
+<a href="javascript:insert('{{line.id}}')" class="insert">Insert new</a>
+</div>

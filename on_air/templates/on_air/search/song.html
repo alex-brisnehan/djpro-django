@@ -1,0 +1,34 @@
+{% extends "on_air/search/base.html" %}
+{% load url from future %}
+
+{% block title %}Songs named “{{value}}”{% endblock %}
+
+{% block content %}
+{{ block.super }}
+<table>
+<thead>
+  <tr>
+    <td>Song</td>
+    <td>Artist</td>
+    <td>Album</td>
+    <td>Last Played</td>
+  </tr>
+</thead>
+<tfoot>
+  <tr>
+    <td colspan="4"></td>
+  </tr>
+</tfoot>
+<tbody>
+{% for song in song_list %}
+  <tr class="{% cycle "even" "odd" %}">
+    <td><a href="javascript:add_to_playlist({{song.id}}{% if song.played_recently %}, true{% endif %})" class="push">Play</a> {{song}}</td>
+    <td>{% if song.artist %}<a href="{% url 'on_air.views.artist' song.artist_id %}/">{{song.artist}}</a>{%endif%}</td>
+    <td><a href="{% url 'on_air.views.album' song.album_id %}">{{song.album}}</a> {% if song.album.location == "NIL" %}<span class="nil" title="Not In Library">NIL</span>{% else %}#{{song.album.location}}{% endif %}</td>
+    {% if song.last_played %}{% if song.played_recently %}<td>{{song.last_played|timesince}} ago<br>{{song.times_played}} times {{song.played_at}}</td>{% else %}<td class="small">{{song.last_played|date:"n/j/Y"}}<br>{{song.times_played}} times</td>{% endif %}{% else %}<td class="small">Not played yet</td>{% endif %}
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{{ block.super }}
+{% endblock %}

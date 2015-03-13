@@ -1,0 +1,13 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools %}
+<ul class="object-tools">
+  <li>
+    <a href="add_this_week/" class="addlink">Add Top 10 list with this week’s most popular albums</a>
+  </li>
+  <li>
+    <a href="add/" class="addlink">Add Top 10 list</a>
+  </li>
+</ul>
+{{ block.super }}
+{% endblock %}

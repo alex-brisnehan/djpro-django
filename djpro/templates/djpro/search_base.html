@@ -1,0 +1,14 @@
+{% extends "djpro/base.html" %}
+
+{% block title %}{{for|capfirst}}s called {{value}}{% endblock %}
+
+{% block search %}
+Search for <select name="for">
+<option{% if for == 'Artist' %} selected="selected"{% endif %}>Artist</option>
+<option{% if for == 'Album' %} selected="selected"{% endif %}>Album</option>
+<option{% if for == 'Location' %} selected="selected"{% endif %}>Location</option>
+<option{% if for == 'Song' %} selected="selected"{% endif %}>Song</option>
+<option{% if for == 'Label' %} selected="selected"{% endif %}>Label</option>
+</select>
+<input type="text" name="value" value="{{value}}">
+{% endblock %}

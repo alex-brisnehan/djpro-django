@@ -1,0 +1,6 @@
+<tr class="{{class|default:"even"}}">
+  <td>{{song.track|default:""}}</td>
+  <td><a href="javascript:add_to_playlist({{song.id}}{% if song.played_recently %}, true{% endif %})" class="push">Play</a> {{song.song}}</td>
+  {% if song.album.is_compilation %}<td>{% if song.comp_artist %}<a href="{% url 'on_air.views.artist' id=song.comp_artist_id %}">{{song.comp_artist}}</a>{% endif %}</td>{% endif %}
+  {% if song.last_played %}{% if song.played_recently %}<td>{{song.last_played|timesince}} ago<br>{{song.times_played}} times {{song.played_at}}</td>{% else %}<td class="small">{{song.last_played|date:"n/j/Y"}}<br>{{song.times_played}} times</td>{% endif %}{% else %}<td class="small">Not played yet</td>{% endif %}
+</tr>

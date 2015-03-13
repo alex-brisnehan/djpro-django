@@ -1,0 +1,1 @@
+{"id":"{{id}}", "song":"<span class=\"artist\">{{song.artist}}</span><span class=\"song\">{{song}} #{{song.album.location}}</span>", "concert":"{% if song.artist.next_concert %}{{song.artist.next_concert.date|date:"D M j"}} @ {{song.artist.next_concert.venue}}{% endif %}"}

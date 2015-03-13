@@ -1,0 +1,6 @@
+[
+{% for line in logs %}
+{"id":"{{line.id}}", "song":"<span class=\"artist\">{{line.song.artist}}</span><span class=\"song\">{{line.song}} #{{line.song.album.location}}</span>", "concert":"{% if line.song.artist.next_concert %}{{line.song.artist.next_concert.date|date:"D M j"}} @ {{line.song.artist.next_concert.venue}}{% endif %}", "played":"{{line.played_at|time:"g:i"}}" }
+{% if not forloop.last %}, {% endif %}
+{% endfor %}
+]

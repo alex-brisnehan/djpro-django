@@ -1,0 +1,28 @@
+{% extends "on_air/helper_base.html" %}
+{% load static %}
+
+{% block title %}Concerts{% endblock %}
+
+{% block content %}
+<table>
+	<thead><tr>
+		<td>Date</td>
+		<td>Bands</td>
+		<td>Venue</td>
+	</tr></thead>
+	<tfoot></tfoot>
+	<tbody>
+	{% for c in concerts %}
+	<tr class="{% cycle "even" "odd" %}">
+		<td style="width:13ex;">{{c.date|date:"D n/j/y"}}<br>{{c.time|time:"g:i a"}}</td>
+		<td>{% for perform in c.performer_set.all %}{% if perform.artist_id %}<a href="{% url 'on_air.views.artist' id=perform.artist_id %}">{{perform}}</a>{% else %}{{perform}}{% endif %}{% if forloop.last %}{% else %} — {% endif %}{% endfor %}<br>
+		{% if c.we_present %}<img src="{% get_static_prefix %}img/atom.png" alt="⚛" class="atom" title="Radio 1190 presents">{% endif %}
+		{% if c.minimum_age == "all" %}All Ages{% else %}{{c.minimum_age}}{% endif %}
+		{{c.info}}</td>
+		<td style="width:24%;">{{c.venue}}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

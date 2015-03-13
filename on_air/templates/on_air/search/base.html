@@ -1,0 +1,6 @@
+{% extends "on_air/helper_base.html" %}
+
+{% block content %}
+<form action="." method="GET" class="info"><input type="submit" class="push" value="Search"> for <select name="for"><option {% if for = "artist" %}selected{% endif %}>artist</option><option {% if for == "album" %}selected{% endif %}>album</option><option {% if for == "song" %}selected{% endif %}>song</option><option {% if for == "location" %}selected{% endif %}>location</option><option {% if for == "label" %}selected{% endif %}>label</option></select>
+  <input type="text" name="value" value="{{value}}"></form>
+{% endblock %}

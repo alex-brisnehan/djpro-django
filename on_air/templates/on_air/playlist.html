@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Radio 1190 on air</title>
+<script src="{% static 'jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'jquery-ui.js' %}" type="text/javascript"></script>
+<script src="{% static 'jQuery.ajaxQueue.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'on_air/script.js' %}" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'on_air/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'jquery.autocomplete.css' %}">
+</head>
+<body>
+<form onsubmit="change(); return false;" id="edit_form"><input type="text" name="artist" onchange="this.form.song.value=this.form.song_id=''"><input type="text" name="song" onkeypress="if(event.keyCode==13) {change();}"><input type="hidden" name="line"><input type="hidden" name="song_id"></form>
+<header><form method="GET" action="{% url 'on_air.views.search' %}" target="onair_helper"> <a href="{% url 'on_air.views.concerts' %}" target="onair_helper">Concerts</a> Search<select name="for"><option>artist</option><option>album</option><option>song</option><option>location</option><option>label</option></select><input name="value"> Sing ho, {{user.userprofile.alias}} <a href="logout/">Logout</a></form></header>
+<div id="old">{% for line in old_played %}
+{% if line.song %}<div>
+<span class="artist"><span class="old_time">{{line.played_at|date:"g:i"}}</span> {{line.song.artist.artist}}</span><span class="song">{{line.menu|default:line.song.song}} #{{line.song.album.location}}</span>
+</div>{% endif %}
+{% endfor %}</div>
+<div id="list">
+{% for line in playlist %}
+<!--{% cycle "even" "odd" as line_color %}-->
+{% include "on_air/playlist_line.html" %}
+{% endfor %}
+</div>
+</body>
+</html>

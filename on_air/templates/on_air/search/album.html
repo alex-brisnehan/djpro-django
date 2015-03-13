@@ -1,0 +1,35 @@
+{% extends "on_air/search/base.html" %}
+
+{% block title %}{{for|capfirst}}s named “{{value}}”{% endblock %}
+
+{% block content %}
+{{ block.super }}
+<table>
+<thead>
+  <tr>
+    <td>Album</td>
+    <td>Artist</td>
+    <td>Location</td>
+    <td>Year</td>
+    <td>Label</td>
+  </tr>
+</thead>
+<tfoot>
+  <tr>
+    <td colspan="5"><a href="{% url 'on_air.views.album_new' %}" class="push">Add new album</a></td>
+  </tr>
+</tfoot>
+<tbody>
+{% for album in album_list %}
+  <tr class="{% cycle "even" "odd" %}">
+    <td><a href="{% url 'on_air.views.album' album.id %}">{{album}}</a></td>
+    <td>{% if album.artist_id %}<a href="{% url 'on_air.views.artist' id=album.artist_id %}">{{album.artist}}</a>{% else %}<i>compliation</i>{% endif %}</td>
+    {% if album.location == "NIL" %}<td title="Not In Library" class="nil">NIL</td>{% else %}<td>{{album.location}}</td>{% endif %}
+    <td>{{album.year}}</td>
+    <td>{{album.label}}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{{ block.super }}
+{% endblock %}
